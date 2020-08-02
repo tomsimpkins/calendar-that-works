@@ -12,7 +12,7 @@ const getBackground = (): Rect => ({
   y: 0,
   w: 1000,
   h: 1000,
-  fill: "black"
+  fill: "black",
 });
 
 const cellW = 128;
@@ -25,7 +25,7 @@ const getPill = ({
   x,
   y,
   text,
-  color
+  color,
 }: {
   x: number;
   y: number;
@@ -42,7 +42,7 @@ const getPill = ({
           x: padding * 2,
           y: padding * 2,
           w: cellW - 4 * padding,
-          h: pillH
+          h: pillH,
         },
         {
           shape: "Text",
@@ -52,11 +52,11 @@ const getPill = ({
           text,
           fontFamily: "Arial",
           fontSize: pillH / 2,
-          textBaseline: "middle"
-        }
+          textBaseline: "middle",
+        },
       ],
-      transforms: [{ transform: "Translate", x, y }]
-    }
+      transforms: [{ transform: "Translate", x, y }],
+    },
   ];
 };
 
@@ -72,11 +72,11 @@ const getPills = (
           x: 0,
           y: 2 * padding + i * (pillH + padding),
           text,
-          color: randomColor()
+          color: randomColor(),
         });
       }),
-      transforms: [{ transform: "Translate", x, y: y + 2 * padding }]
-    }
+      transforms: [{ transform: "Translate", x, y: y + 2 * padding }],
+    },
   ];
 };
 
@@ -85,7 +85,7 @@ const getDayShapes = ({
   y,
   date,
   month,
-  pillData
+  pillData,
 }: {
   x: number;
   y: number;
@@ -103,7 +103,7 @@ const getDayShapes = ({
         y: padding,
         w: cellW - 2 * padding,
         h: cellH - 2 * padding,
-        fill: "white"
+        fill: "white",
       },
       {
         shape: "Text",
@@ -112,7 +112,7 @@ const getDayShapes = ({
         x: cellW - 4 * padding,
         y: 4 * padding,
         fontSize: 14,
-        fontFamily: "Arial"
+        fontFamily: "Arial",
       },
       ...(month
         ? [
@@ -123,8 +123,8 @@ const getDayShapes = ({
               x: 4 * padding,
               y: 4 * padding,
               fontSize: 14,
-              fontFamily: "Arial"
-            } as Text
+              fontFamily: "Arial",
+            } as Text,
           ]
         : []),
       {
@@ -133,11 +133,11 @@ const getDayShapes = ({
         w: cellW - 4 * padding,
         h: 1,
         x: 2 * padding,
-        y: 16 + 4 * padding
+        y: 16 + 4 * padding,
       },
-      ...getPills({ x: 0, y: 16 }, pillData)
+      ...getPills({ x: 0, y: 16 }, pillData),
     ],
-    transforms: [{ transform: "Translate", x, y }]
+    transforms: [{ transform: "Translate", x, y }],
   };
 };
 
@@ -153,7 +153,7 @@ const monthNames = [
   "Sep",
   "Oct",
   "Nov",
-  "Dec"
+  "Dec",
 ];
 
 const dayNames = ["Sun", "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat"];
@@ -167,7 +167,7 @@ const getDayNamesHeader = (): Shape[] => {
         h: headerH,
         x: i * cellW,
         y: 0,
-        fill: "black"
+        fill: "black",
       },
       {
         shape: "Rect",
@@ -175,7 +175,7 @@ const getDayNamesHeader = (): Shape[] => {
         h: headerH - 2 * padding,
         x: i * cellW + padding,
         y: padding,
-        fill: "black"
+        fill: "black",
       },
       {
         shape: "Text",
@@ -187,8 +187,8 @@ const getDayNamesHeader = (): Shape[] => {
         x: i * cellW + 4 * padding,
         y: headerH / 2 + padding,
         fontSize: 16,
-        fontFamily: "Arial"
-      }
+        fontFamily: "Arial",
+      },
     ];
   });
 };
@@ -214,7 +214,7 @@ const getDayData = (year: number, month: number) => {
       date: tmp.getUTCDate(),
       day: tmp.getUTCDay(),
       month: tmp.getUTCMonth(),
-      year: tmp.getUTCFullYear()
+      year: tmp.getUTCFullYear(),
     });
 
     calUtc += dayInMs;
@@ -242,7 +242,7 @@ const getMonthShapes = (pillData: string[]): Group[] => {
       y,
       date: day.date,
       month: showMonth ? monthNames[day.month] : undefined,
-      pillData
+      pillData,
     });
 
     if (day.day === 6) {
@@ -262,15 +262,15 @@ export const getCalendarShapes = (): (Group | Shape)[] => {
     "Toms's Birthday",
     "Jess's Birthday",
     "Twiggy's Birthday",
-    "Alex's Birthday"
+    "Alex's Birthday",
   ];
 
   return [
     {
       container: "Group",
       elements: getMonthShapes(pillData),
-      transforms: [{ transform: "Translate", x: 0, y: headerH }]
+      transforms: [{ transform: "Translate", x: 0, y: headerH }],
     },
-    ...getDayNamesHeader()
+    ...getDayNamesHeader(),
   ];
 };
