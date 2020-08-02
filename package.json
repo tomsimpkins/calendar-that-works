@@ -1,23 +1,25 @@
 {
-  "name": "vanilla-typescript",
+  "name": "calendar-that-works",
+  "private": true,
   "version": "1.0.0",
-  "description": "JavaScript and TypeScript example starter project",
+  "description": "Client and server for calendar",
   "main": "index.html",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html"
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
   },
-  "dependencies": {
-    "@types/chroma-js": "^2.0.0",
-    "chroma-js": "2.1.0",
-    "ical": "0.8.0"
-  },
-  "devDependencies": {
-    "parcel-bundler": "^1.6.1",
-    "typescript": "^3.9.7"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "keywords": [
     "typescript",
     "javascript"
-  ]
+  ],
+  "dependencies": {
+    "concurrently": "^5.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
 }
