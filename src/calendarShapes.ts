@@ -1,7 +1,7 @@
 import { Rect, Group, Text, Shape } from "./types";
 import chroma from "chroma-js";
 
-const darks = chroma.brewer.dark2;
+const darks = chroma.brewer.Dark2;
 const randomColor = () => {
   return darks[(Math.random() * darks.length) | 0];
 };

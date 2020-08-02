@@ -8,11 +8,13 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "@types/chroma-js": "^2.0.0",
     "chroma-js": "2.1.0",
     "ical": "0.8.0"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.6.1"
+    "parcel-bundler": "^1.6.1",
+    "typescript": "^3.9.7"
   },
   "keywords": [
     "typescript",
